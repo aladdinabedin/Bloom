@@ -4409,6 +4409,14 @@ class UploadSpeciesFlowData {
     this.elevation = '',
     this.habitatType = '',
     this.microHabitat = '',
+    this.specificSite = '',
+    this.growthSubstrate = '',
+    this.hostTreeSpecies = '',
+    this.hostTreeDiameter = '',
+    this.canopyCover = '',
+    this.lightExposure = '',
+    this.soilType = '',
+    this.nearbyWaterSource = '',
     List<UploadSpeciesImageDraft>? images,
     List<UploadContributorDraft>? contributors,
     DateTime? updatedAt,
@@ -4453,6 +4461,14 @@ class UploadSpeciesFlowData {
   String elevation;
   String habitatType;
   String microHabitat;
+  String specificSite;
+  String growthSubstrate;
+  String hostTreeSpecies;
+  String hostTreeDiameter;
+  String canopyCover;
+  String lightExposure;
+  String soilType;
+  String nearbyWaterSource;
 
   List<UploadSpeciesImageDraft> images;
   List<UploadContributorDraft> contributors;
@@ -4493,6 +4509,14 @@ class UploadSpeciesFlowData {
       elevation: elevation,
       habitatType: habitatType,
       microHabitat: microHabitat,
+      specificSite: specificSite,
+      growthSubstrate: growthSubstrate,
+      hostTreeSpecies: hostTreeSpecies,
+      hostTreeDiameter: hostTreeDiameter,
+      canopyCover: canopyCover,
+      lightExposure: lightExposure,
+      soilType: soilType,
+      nearbyWaterSource: nearbyWaterSource,
       images: images
           .map((UploadSpeciesImageDraft image) => image.copy())
           .toList(growable: false),
@@ -4538,6 +4562,14 @@ class UploadSpeciesFlowData {
       'elevation': elevation,
       'habitatType': habitatType,
       'microHabitat': microHabitat,
+      'specificSite': specificSite,
+      'growthSubstrate': growthSubstrate,
+      'hostTreeSpecies': hostTreeSpecies,
+      'hostTreeDiameter': hostTreeDiameter,
+      'canopyCover': canopyCover,
+      'lightExposure': lightExposure,
+      'soilType': soilType,
+      'nearbyWaterSource': nearbyWaterSource,
       'images': images
           .map((UploadSpeciesImageDraft image) => image.toJson())
           .toList(growable: false),
@@ -4623,6 +4655,14 @@ class UploadSpeciesFlowData {
       elevation: (json['elevation'] ?? '').toString(),
       habitatType: (json['habitatType'] ?? '').toString(),
       microHabitat: (json['microHabitat'] ?? '').toString(),
+      specificSite: (json['specificSite'] ?? '').toString(),
+      growthSubstrate: (json['growthSubstrate'] ?? '').toString(),
+      hostTreeSpecies: (json['hostTreeSpecies'] ?? '').toString(),
+      hostTreeDiameter: (json['hostTreeDiameter'] ?? '').toString(),
+      canopyCover: (json['canopyCover'] ?? '').toString(),
+      lightExposure: (json['lightExposure'] ?? '').toString(),
+      soilType: (json['soilType'] ?? '').toString(),
+      nearbyWaterSource: (json['nearbyWaterSource'] ?? '').toString(),
       images: parsedImages,
       contributors: parsedContributors,
       updatedAt:
@@ -4634,10 +4674,6 @@ class UploadSpeciesFlowData {
 
 class UploadSpeciesFlowValidators {
   static String? validateSpeciesInformation(UploadSpeciesFlowData data) {
-    if (data.location.trim().isEmpty) {
-      return 'Location is required.';
-    }
-
     final int? speciesCount = int.tryParse(data.numberLocated.trim());
     if (speciesCount == null || speciesCount <= 0) {
       return 'Number of species in the area must be greater than 0.';
@@ -6327,27 +6363,71 @@ class _UploadSpeciesSightingsScreenState
   ];
 
   static const List<String> _habitatTypeOptions = <String>[
-    'Montane forest',
-    'Lower montane forest',
-    'Mossy forest',
-    'Secondary forest edge',
-    'Riparian forest',
-    'Agroforest buffer zone',
+    'lowland forest',
+    'montane forest',
+    'mossy forest',
   ];
 
   static const List<String> _microHabitatOptions = <String>[
-    'Epiphytic on mossy branches',
-    'Epiphytic on tree trunk',
-    'Shaded understory branch',
-    'Moist ravine slope',
-    'Near stream canopy',
-    'Open ridge with filtered light',
+    'Canopy',
+    'understory',
+    'forest floor',
+    'rock surface',
+  ];
+
+  static const List<String> _specificSiteOptions = <String>[
+    'trail',
+    'ridge',
+    'streamside',
+    'Other',
+  ];
+
+  static const List<String> _growthSubstrateOptions = <String>[
+    'tree bark',
+    'soil',
+    'rock',
+    'decaying wood',
+  ];
+
+  static const List<String> _lightExposureOptions = <String>[
+    'full shade',
+    'partial',
+    'direct',
+  ];
+
+  static const List<String> _soilTypeOptions = <String>[
+    'Sandy soil',
+    'Clay soil',
+    'Loamy soil',
+    'Rocky soil',
+    'Volcanic soil',
+    'Laterite soil',
+  ];
+
+  static const List<String> _nearbyWaterSourceOptions = <String>[
+    'River',
+    'Stream',
+    'Spring',
+    'Waterfall',
+    'Seepage area',
+    'None',
+    'Unidentified',
   ];
 
   String? _selectedAltitude;
   String? _selectedElevation;
   String? _selectedHabitatType;
   String? _selectedMicroHabitat;
+  String? _selectedSpecificSite;
+  String? _selectedGrowthSubstrate;
+  String? _selectedLightExposure;
+  String? _selectedSoilType;
+  String? _selectedNearbyWaterSource;
+
+  late TextEditingController _otherSpecificSiteController;
+  late TextEditingController _hostTreeSpeciesController;
+  late TextEditingController _hostTreeDiameterController;
+  late TextEditingController _canopyCoverController;
 
   WebViewController? _sightingsMapController;
   bool _isMapReady = false;
@@ -6402,7 +6482,7 @@ class _UploadSpeciesSightingsScreenState
     _longitudeController.text = _flowData.longitude;
     _provinceController.text = _flowData.province;
     _municipalityController.text = _flowData.municipality;
-    _mountainController.text = _flowData.mountain;
+    _mountainController.text = 'Mt. Busa';
     _selectedAltitude = _flowData.altitude.trim().isEmpty
         ? null
         : _flowData.altitude.trim();
@@ -6415,6 +6495,30 @@ class _UploadSpeciesSightingsScreenState
     _selectedMicroHabitat = _flowData.microHabitat.trim().isEmpty
         ? null
         : _flowData.microHabitat.trim();
+    _selectedSpecificSite = _flowData.specificSite.trim().isEmpty
+        ? null
+        : _flowData.specificSite.trim();
+    _selectedGrowthSubstrate = _flowData.growthSubstrate.trim().isEmpty
+        ? null
+        : _flowData.growthSubstrate.trim();
+    _selectedLightExposure = _flowData.lightExposure.trim().isEmpty
+        ? null
+        : _flowData.lightExposure.trim();
+    _selectedSoilType = _flowData.soilType.trim().isEmpty
+        ? null
+        : _flowData.soilType.trim();
+    _selectedNearbyWaterSource = _flowData.nearbyWaterSource.trim().isEmpty
+        ? null
+        : _flowData.nearbyWaterSource.trim();
+
+    _otherSpecificSiteController = TextEditingController();
+    _hostTreeSpeciesController = TextEditingController(
+      text: _flowData.hostTreeSpecies,
+    );
+    _hostTreeDiameterController = TextEditingController(
+      text: _flowData.hostTreeDiameter,
+    );
+    _canopyCoverController = TextEditingController(text: _flowData.canopyCover);
 
     _latitudeController.addListener(_scheduleReverseGeocodeLookup);
     _longitudeController.addListener(_scheduleReverseGeocodeLookup);
@@ -6470,6 +6574,10 @@ class _UploadSpeciesSightingsScreenState
     _provinceController.dispose();
     _municipalityController.dispose();
     _mountainController.dispose();
+    _otherSpecificSiteController.dispose();
+    _hostTreeSpeciesController.dispose();
+    _hostTreeDiameterController.dispose();
+    _canopyCoverController.dispose();
     super.dispose();
   }
 
@@ -6855,11 +6963,22 @@ class _UploadSpeciesSightingsScreenState
     _flowData.longitude = _longitudeController.text.trim();
     _flowData.province = _provinceController.text.trim();
     _flowData.municipality = _municipalityController.text.trim();
-    _flowData.mountain = _mountainController.text.trim();
+    _flowData.mountain = 'Mt. Busa';
     _flowData.altitude = (_selectedAltitude ?? '').trim();
     _flowData.elevation = (_selectedElevation ?? '').trim();
     _flowData.habitatType = (_selectedHabitatType ?? '').trim();
     _flowData.microHabitat = (_selectedMicroHabitat ?? '').trim();
+    _flowData.specificSite = (_selectedSpecificSite ?? '').trim();
+    if (_selectedSpecificSite == 'Other') {
+      _flowData.specificSite = _otherSpecificSiteController.text.trim();
+    }
+    _flowData.growthSubstrate = (_selectedGrowthSubstrate ?? '').trim();
+    _flowData.hostTreeSpecies = _hostTreeSpeciesController.text.trim();
+    _flowData.hostTreeDiameter = _hostTreeDiameterController.text.trim();
+    _flowData.canopyCover = _canopyCoverController.text.trim();
+    _flowData.lightExposure = (_selectedLightExposure ?? '').trim();
+    _flowData.soilType = (_selectedSoilType ?? '').trim();
+    _flowData.nearbyWaterSource = (_selectedNearbyWaterSource ?? '').trim();
   }
 
   void _showNextPlaceholder() {
@@ -7288,6 +7407,8 @@ class _UploadSpeciesSightingsScreenState
   List<Widget> _buildSightingDetailsForm() {
     return <Widget>[
       const SizedBox(height: 10),
+      _fieldLabel('Geographical / Location Data'),
+      const SizedBox(height: 8),
       _buildSearchableDropdownField(
         label: 'Altitude',
         hint: 'Select altitude',
@@ -7312,6 +7433,86 @@ class _UploadSpeciesSightingsScreenState
         },
       ),
       const SizedBox(height: 8),
+      _fieldLabel('Specific Site / Zone'),
+      const SizedBox(height: 4),
+      _buildSearchableDropdownField(
+        label: 'Specific Site',
+        hint: 'Pick one: trail, ridge, streamside, Other',
+        value: _selectedSpecificSite,
+        options: _specificSiteOptions,
+        onChanged: (String? value) {
+          setState(() {
+            _selectedSpecificSite = value;
+          });
+        },
+      ),
+      if (_selectedSpecificSite == 'Other')
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 8),
+            _fieldLabel('Other Specific Site'),
+            const SizedBox(height: 4),
+            _buildField(
+              controller: _otherSpecificSiteController,
+              hintText: 'Enter custom site',
+            ),
+          ],
+        ),
+      const SizedBox(height: 8),
+      _fieldLabel('Growth Substrate'),
+      const SizedBox(height: 4),
+      _buildSearchableDropdownField(
+        label: 'Growth Substrate',
+        hint: 'Select growth substrate',
+        value: _selectedGrowthSubstrate,
+        options: _growthSubstrateOptions,
+        onChanged: (String? value) {
+          setState(() {
+            _selectedGrowthSubstrate = value;
+          });
+        },
+      ),
+      const SizedBox(height: 10),
+      _fieldLabel('Host Tree'),
+      const SizedBox(height: 4),
+      _fieldLabel('Host Tree Species (Optional)'),
+      const SizedBox(height: 4),
+      _buildField(
+        controller: _hostTreeSpeciesController,
+        hintText: 'Enter host tree species',
+      ),
+      const SizedBox(height: 6),
+      _fieldLabel('Host Tree Diameter / DBH (Optional)'),
+      const SizedBox(height: 4),
+      _buildField(
+        controller: _hostTreeDiameterController,
+        hintText: 'Enter DBH in cm',
+      ),
+      const SizedBox(height: 10),
+      _fieldLabel('Environmental Data'),
+      const SizedBox(height: 8),
+      _fieldLabel('Canopy Cover (%)'),
+      const SizedBox(height: 4),
+      _buildField(
+        controller: _canopyCoverController,
+        hintText: 'Enter percentage (0-100)',
+      ),
+      const SizedBox(height: 8),
+      _buildSearchableDropdownField(
+        label: 'Light Exposure',
+        hint: 'Select light exposure',
+        value: _selectedLightExposure,
+        options: _lightExposureOptions,
+        onChanged: (String? value) {
+          setState(() {
+            _selectedLightExposure = value;
+          });
+        },
+      ),
+      const SizedBox(height: 8),
+      _fieldLabel('Habitat Type'),
+      const SizedBox(height: 4),
       _buildSearchableDropdownField(
         label: 'Habitat Type',
         hint: 'Select habitat type',
@@ -7325,13 +7526,37 @@ class _UploadSpeciesSightingsScreenState
       ),
       const SizedBox(height: 8),
       _buildSearchableDropdownField(
-        label: 'Micro Habitat',
-        hint: 'Select micro habitat',
+        label: 'Microhabitat',
+        hint: 'Select microhabitat',
         value: _selectedMicroHabitat,
         options: _microHabitatOptions,
         onChanged: (String? value) {
           setState(() {
             _selectedMicroHabitat = value;
+          });
+        },
+      ),
+      const SizedBox(height: 8),
+      _buildSearchableDropdownField(
+        label: 'Soil Type',
+        hint: 'Select soil type',
+        value: _selectedSoilType,
+        options: _soilTypeOptions,
+        onChanged: (String? value) {
+          setState(() {
+            _selectedSoilType = value;
+          });
+        },
+      ),
+      const SizedBox(height: 8),
+      _buildSearchableDropdownField(
+        label: 'Nearby Water Source',
+        hint: 'Select water source',
+        value: _selectedNearbyWaterSource,
+        options: _nearbyWaterSourceOptions,
+        onChanged: (String? value) {
+          setState(() {
+            _selectedNearbyWaterSource = value;
           });
         },
       ),
