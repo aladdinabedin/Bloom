@@ -4389,6 +4389,27 @@ class UploadSpeciesFlowData {
     this.flowerColor = '',
     this.floweringFromMonth = '',
     this.floweringToMonth = '',
+    this.plantHeight = '',
+    this.pseudobulbPresent = '',
+    this.stemLength = '',
+    this.rootLength = '',
+    this.numberOfLeaves = '',
+    this.leafShape = '',
+    this.leafLength = '',
+    this.leafWidth = '',
+    this.leafTexture = '',
+    this.leafArrangement = '',
+    this.numberOfFlowers = '',
+    this.flowerDiameter = '',
+    this.inflorescenceType = '',
+    this.petalCharacteristics = '',
+    this.sepalCharacteristics = '',
+    this.labellumDescription = '',
+    this.fragrance = '',
+    this.bloomingStage = '',
+    this.fruitPresent = '',
+    this.fruitType = '',
+    this.seedCapsuleCondition = '',
     this.observationDate = '',
     this.observationTime = '',
     this.collectionMethod = '',
@@ -4439,6 +4460,27 @@ class UploadSpeciesFlowData {
   String flowerColor;
   String floweringFromMonth;
   String floweringToMonth;
+  String plantHeight;
+  String pseudobulbPresent;
+  String stemLength;
+  String rootLength;
+  String numberOfLeaves;
+  String leafShape;
+  String leafLength;
+  String leafWidth;
+  String leafTexture;
+  String leafArrangement;
+  String numberOfFlowers;
+  String flowerDiameter;
+  String inflorescenceType;
+  String petalCharacteristics;
+  String sepalCharacteristics;
+  String labellumDescription;
+  String fragrance;
+  String bloomingStage;
+  String fruitPresent;
+  String fruitType;
+  String seedCapsuleCondition;
   String observationDate;
   String observationTime;
   String collectionMethod;
@@ -4489,6 +4531,27 @@ class UploadSpeciesFlowData {
       flowerColor: flowerColor,
       floweringFromMonth: floweringFromMonth,
       floweringToMonth: floweringToMonth,
+      plantHeight: plantHeight,
+      pseudobulbPresent: pseudobulbPresent,
+      stemLength: stemLength,
+      rootLength: rootLength,
+      numberOfLeaves: numberOfLeaves,
+      leafShape: leafShape,
+      leafLength: leafLength,
+      leafWidth: leafWidth,
+      leafTexture: leafTexture,
+      leafArrangement: leafArrangement,
+      numberOfFlowers: numberOfFlowers,
+      flowerDiameter: flowerDiameter,
+      inflorescenceType: inflorescenceType,
+      petalCharacteristics: petalCharacteristics,
+      sepalCharacteristics: sepalCharacteristics,
+      labellumDescription: labellumDescription,
+      fragrance: fragrance,
+      bloomingStage: bloomingStage,
+      fruitPresent: fruitPresent,
+      fruitType: fruitType,
+      seedCapsuleCondition: seedCapsuleCondition,
       observationDate: observationDate,
       observationTime: observationTime,
       collectionMethod: collectionMethod,
@@ -4542,6 +4605,27 @@ class UploadSpeciesFlowData {
       'flowerColor': flowerColor,
       'floweringFromMonth': floweringFromMonth,
       'floweringToMonth': floweringToMonth,
+      'plantHeight': plantHeight,
+      'pseudobulbPresent': pseudobulbPresent,
+      'stemLength': stemLength,
+      'rootLength': rootLength,
+      'numberOfLeaves': numberOfLeaves,
+      'leafShape': leafShape,
+      'leafLength': leafLength,
+      'leafWidth': leafWidth,
+      'leafTexture': leafTexture,
+      'leafArrangement': leafArrangement,
+      'numberOfFlowers': numberOfFlowers,
+      'flowerDiameter': flowerDiameter,
+      'inflorescenceType': inflorescenceType,
+      'petalCharacteristics': petalCharacteristics,
+      'sepalCharacteristics': sepalCharacteristics,
+      'labellumDescription': labellumDescription,
+      'fragrance': fragrance,
+      'bloomingStage': bloomingStage,
+      'fruitPresent': fruitPresent,
+      'fruitType': fruitType,
+      'seedCapsuleCondition': seedCapsuleCondition,
       'observationDate': observationDate,
       'observationTime': observationTime,
       'collectionMethod': collectionMethod,
@@ -4634,6 +4718,27 @@ class UploadSpeciesFlowData {
       flowerColor: (json['flowerColor'] ?? '').toString(),
       floweringFromMonth: (json['floweringFromMonth'] ?? '').toString(),
       floweringToMonth: (json['floweringToMonth'] ?? '').toString(),
+      plantHeight: (json['plantHeight'] ?? '').toString(),
+      pseudobulbPresent: (json['pseudobulbPresent'] ?? '').toString(),
+      stemLength: (json['stemLength'] ?? '').toString(),
+      rootLength: (json['rootLength'] ?? '').toString(),
+      numberOfLeaves: (json['numberOfLeaves'] ?? '').toString(),
+      leafShape: (json['leafShape'] ?? '').toString(),
+      leafLength: (json['leafLength'] ?? '').toString(),
+      leafWidth: (json['leafWidth'] ?? '').toString(),
+      leafTexture: (json['leafTexture'] ?? '').toString(),
+      leafArrangement: (json['leafArrangement'] ?? '').toString(),
+      numberOfFlowers: (json['numberOfFlowers'] ?? '').toString(),
+      flowerDiameter: (json['flowerDiameter'] ?? '').toString(),
+      inflorescenceType: (json['inflorescenceType'] ?? '').toString(),
+      petalCharacteristics: (json['petalCharacteristics'] ?? '').toString(),
+      sepalCharacteristics: (json['sepalCharacteristics'] ?? '').toString(),
+      labellumDescription: (json['labellumDescription'] ?? '').toString(),
+      fragrance: (json['fragrance'] ?? '').toString(),
+      bloomingStage: (json['bloomingStage'] ?? '').toString(),
+      fruitPresent: (json['fruitPresent'] ?? '').toString(),
+      fruitType: (json['fruitType'] ?? '').toString(),
+      seedCapsuleCondition: (json['seedCapsuleCondition'] ?? '').toString(),
       observationDate: (json['observationDate'] ?? '').toString(),
       observationTime: (json['observationTime'] ?? '').toString(),
       collectionMethod: (json['collectionMethod'] ?? '').toString(),
@@ -6884,7 +6989,7 @@ class _UploadSpeciesSightingsScreenState
           },
           child: InputDecorator(
             isEmpty: (value ?? '').trim().isEmpty,
-            decoration: _uploadInputDecoration(hintText: hint).copyWith(
+            decoration: _uploadInputDecoration().copyWith(
               suffixIcon: const Icon(
                 Icons.search_rounded,
                 color: _mutedTextColor,
@@ -7433,8 +7538,6 @@ class _UploadSpeciesSightingsScreenState
         },
       ),
       const SizedBox(height: 8),
-      _fieldLabel('Specific Site / Zone'),
-      const SizedBox(height: 4),
       _buildSearchableDropdownField(
         label: 'Specific Site',
         hint: 'Pick one: trail, ridge, streamside, Other',
@@ -7460,8 +7563,6 @@ class _UploadSpeciesSightingsScreenState
           ],
         ),
       const SizedBox(height: 8),
-      _fieldLabel('Growth Substrate'),
-      const SizedBox(height: 4),
       _buildSearchableDropdownField(
         label: 'Growth Substrate',
         hint: 'Select growth substrate',
@@ -7511,8 +7612,6 @@ class _UploadSpeciesSightingsScreenState
         },
       ),
       const SizedBox(height: 8),
-      _fieldLabel('Habitat Type'),
-      const SizedBox(height: 4),
       _buildSearchableDropdownField(
         label: 'Habitat Type',
         hint: 'Select habitat type',
@@ -7684,22 +7783,12 @@ class _UploadSpeciesMorphologyScreenState
   late final UploadSpeciesFlowData _flowData;
 
   static const List<String> _leafTypeOptions = <String>[
-    'Linear',
-    'Ovate',
-    'Elliptical',
-    'Oblong',
-    'Cordate',
-    'Lanceolate',
-    'Acicular',
-    'Reniform',
-    'Orbicular',
-    'Sagittate',
-    'Hastate',
-    'Lyrate',
-    'Spatulate',
-    'Rhomboid',
-    'Oblique',
-    'Cuneate',
+    'Linear & Narrow',
+    'Rounded & Oval',
+    'Pointy or Tapered',
+    'Reversed',
+    'Specialized Shapes',
+    'Others',
   ];
 
   static const List<String> _flowerColorOptions = <String>[
@@ -7730,10 +7819,110 @@ class _UploadSpeciesMorphologyScreenState
     'December',
   ];
 
+  static const List<String> _pseudobulbOptions = <String>['Yes', 'No'];
+
+  static const List<String> _leafShapeOptions = <String>[
+    'Linear & Narrow',
+    'Rounded & Oval',
+    'Pointy or Tapered',
+    'Reversed',
+    'Specialized Shapes',
+  ];
+
+  static const List<String> _leafTextureOptions = <String>[
+    'Smooth',
+    'Leathery',
+    'Hairy or Fuzzy',
+    'Thin or Fragile',
+  ];
+
+  static const List<String> _leafArrangementOptions = <String>[
+    'Alternate',
+    'Opposite',
+    'Whorled',
+  ];
+
+  static const List<String> _inflorescenceTypeOptions = <String>[
+    'Raceme',
+    'Spike',
+    'Panicle',
+    'Solitary',
+  ];
+
+  static const List<String> _petalCharacteristicsOptions = <String>[
+    'Obovate',
+    'Elliptic',
+    'Spatulate',
+  ];
+
+  static const List<String> _labellumOptions = <String>[
+    'Trilobed (Three-lobed)',
+    'Saccate (Bag-like)',
+    'Spurred',
+  ];
+
+  static const List<String> _fragranceOptions = <String>[
+    'None',
+    'Faint',
+    'Strong',
+    'Sweet',
+    'Musky',
+    'Spicy',
+  ];
+
+  static const List<String> _bloomingStageOptions = <String>[
+    'Budding',
+    'Anthesis (Early)',
+    'Full Bloom',
+    'Senescent',
+  ];
+
+  static const List<String> _fruitTypeOptions = <String>[
+    'Capsule',
+    'Pod',
+    'Berry',
+  ];
+
+  static const List<String> _seedCapsuleConditionOptions = <String>[
+    'Immature (Green)',
+    'Mature (Yellow/Brown)',
+    'Dehisced (Split)',
+    'Aborted',
+  ];
+
   String? _selectedLeafType;
   String? _selectedFlowerColor;
   String? _selectedFloweringFromMonth;
   String? _selectedFloweringToMonth;
+
+  // Plant Structure
+  late TextEditingController _plantHeightController;
+  String? _selectedPseudobulbPresent;
+  late TextEditingController _stemLengthController;
+  late TextEditingController _rootLengthController;
+
+  // Leaves
+  late TextEditingController _numberOfLeavesController;
+  String? _selectedLeafShape;
+  late TextEditingController _leafLengthController;
+  late TextEditingController _leafWidthController;
+  List<String> _selectedLeafTexture = <String>[];
+  String? _selectedLeafArrangement;
+
+  // Flowers
+  late TextEditingController _numberOfFlowersController;
+  late TextEditingController _flowerDiameterController;
+  String? _selectedInflorescenceType;
+  String? _selectedPetalCharacteristics;
+  late TextEditingController _sepalCharacteristicsController;
+  String? _selectedLabellumDescription;
+  String? _selectedFragrance;
+  String? _selectedBloomingStage;
+
+  // Fruits/Seeds
+  String? _selectedFruitPresent;
+  String? _selectedFruitType;
+  String? _selectedSeedCapsuleCondition;
 
   @override
   void initState() {
@@ -7751,6 +7940,83 @@ class _UploadSpeciesMorphologyScreenState
     _selectedFloweringToMonth = _flowData.floweringToMonth.trim().isEmpty
         ? null
         : _flowData.floweringToMonth;
+
+    // Plant Structure
+    _plantHeightController = TextEditingController(text: _flowData.plantHeight);
+    _selectedPseudobulbPresent = _flowData.pseudobulbPresent.trim().isEmpty
+        ? null
+        : _flowData.pseudobulbPresent;
+    _stemLengthController = TextEditingController(text: _flowData.stemLength);
+    _rootLengthController = TextEditingController(text: _flowData.rootLength);
+
+    // Leaves
+    _numberOfLeavesController = TextEditingController(
+      text: _flowData.numberOfLeaves,
+    );
+    _selectedLeafShape = _flowData.leafShape.trim().isEmpty
+        ? null
+        : _flowData.leafShape;
+    _leafLengthController = TextEditingController(text: _flowData.leafLength);
+    _leafWidthController = TextEditingController(text: _flowData.leafWidth);
+    _selectedLeafTexture = _flowData.leafTexture.trim().isEmpty
+        ? <String>[]
+        : _flowData.leafTexture.split(',').map((String s) => s.trim()).toList();
+    _selectedLeafArrangement = _flowData.leafArrangement.trim().isEmpty
+        ? null
+        : _flowData.leafArrangement;
+
+    // Flowers
+    _numberOfFlowersController = TextEditingController(
+      text: _flowData.numberOfFlowers,
+    );
+    _flowerDiameterController = TextEditingController(
+      text: _flowData.flowerDiameter,
+    );
+    _selectedInflorescenceType = _flowData.inflorescenceType.trim().isEmpty
+        ? null
+        : _flowData.inflorescenceType;
+    _selectedPetalCharacteristics =
+        _flowData.petalCharacteristics.trim().isEmpty
+        ? null
+        : _flowData.petalCharacteristics;
+    _sepalCharacteristicsController = TextEditingController(
+      text: _flowData.sepalCharacteristics,
+    );
+    _selectedLabellumDescription = _flowData.labellumDescription.trim().isEmpty
+        ? null
+        : _flowData.labellumDescription;
+    _selectedFragrance = _flowData.fragrance.trim().isEmpty
+        ? null
+        : _flowData.fragrance;
+    _selectedBloomingStage = _flowData.bloomingStage.trim().isEmpty
+        ? null
+        : _flowData.bloomingStage;
+
+    // Fruits/Seeds
+    _selectedFruitPresent = _flowData.fruitPresent.trim().isEmpty
+        ? null
+        : _flowData.fruitPresent;
+    _selectedFruitType = _flowData.fruitType.trim().isEmpty
+        ? null
+        : _flowData.fruitType;
+    _selectedSeedCapsuleCondition =
+        _flowData.seedCapsuleCondition.trim().isEmpty
+        ? null
+        : _flowData.seedCapsuleCondition;
+  }
+
+  @override
+  void dispose() {
+    _plantHeightController.dispose();
+    _stemLengthController.dispose();
+    _rootLengthController.dispose();
+    _numberOfLeavesController.dispose();
+    _leafLengthController.dispose();
+    _leafWidthController.dispose();
+    _numberOfFlowersController.dispose();
+    _flowerDiameterController.dispose();
+    _sepalCharacteristicsController.dispose();
+    super.dispose();
   }
 
   void _syncFlowDataFromForm() {
@@ -7758,6 +8024,38 @@ class _UploadSpeciesMorphologyScreenState
     _flowData.flowerColor = (_selectedFlowerColor ?? '').trim();
     _flowData.floweringFromMonth = (_selectedFloweringFromMonth ?? '').trim();
     _flowData.floweringToMonth = (_selectedFloweringToMonth ?? '').trim();
+
+    // Plant Structure
+    _flowData.plantHeight = _plantHeightController.text.trim();
+    _flowData.pseudobulbPresent = (_selectedPseudobulbPresent ?? '').trim();
+    _flowData.stemLength = _stemLengthController.text.trim();
+    _flowData.rootLength = _rootLengthController.text.trim();
+
+    // Leaves
+    _flowData.numberOfLeaves = _numberOfLeavesController.text.trim();
+    _flowData.leafShape = (_selectedLeafShape ?? '').trim();
+    _flowData.leafLength = _leafLengthController.text.trim();
+    _flowData.leafWidth = _leafWidthController.text.trim();
+    _flowData.leafTexture = _selectedLeafTexture.join(', ');
+    _flowData.leafArrangement = (_selectedLeafArrangement ?? '').trim();
+
+    // Flowers
+    _flowData.numberOfFlowers = _numberOfFlowersController.text.trim();
+    _flowData.flowerDiameter = _flowerDiameterController.text.trim();
+    _flowData.inflorescenceType = (_selectedInflorescenceType ?? '').trim();
+    _flowData.petalCharacteristics = (_selectedPetalCharacteristics ?? '')
+        .trim();
+    _flowData.sepalCharacteristics = _sepalCharacteristicsController.text
+        .trim();
+    _flowData.labellumDescription = (_selectedLabellumDescription ?? '').trim();
+    _flowData.fragrance = (_selectedFragrance ?? '').trim();
+    _flowData.bloomingStage = (_selectedBloomingStage ?? '').trim();
+
+    // Fruits/Seeds
+    _flowData.fruitPresent = (_selectedFruitPresent ?? '').trim();
+    _flowData.fruitType = (_selectedFruitType ?? '').trim();
+    _flowData.seedCapsuleCondition = (_selectedSeedCapsuleCondition ?? '')
+        .trim();
   }
 
   void _openNextStep() {
@@ -7817,28 +8115,239 @@ class _UploadSpeciesMorphologyScreenState
               const SizedBox(height: 20),
               _sectionLabel('Morphological Characteristics'),
               const SizedBox(height: 10),
-              _fieldLabel('Leaf Type'),
+              // ===== PLANT STRUCTURE =====
+              _fieldLabel('Plant Structure'),
+              const SizedBox(height: 8),
+              _fieldLabel('Plant Height (cm)'),
+              const SizedBox(height: 4),
+              TextField(
+                controller: _plantHeightController,
+                keyboardType: TextInputType.number,
+                decoration: _fieldDecoration().copyWith(
+                  hintText: 'Enter plant height in cm',
+                ),
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Pseudobulb Present'),
               const SizedBox(height: 4),
               _dropdownField(
-                hint: 'Select one leaf type',
-                value: _selectedLeafType,
-                options: _leafTypeOptions,
+                hint: 'Select yes or no',
+                value: _selectedPseudobulbPresent,
+                options: _pseudobulbOptions,
                 onChanged: (String? value) {
                   setState(() {
-                    _selectedLeafType = value;
+                    _selectedPseudobulbPresent = value;
                   });
                 },
               ),
               const SizedBox(height: 10),
+              _fieldLabel('Stem Length (cm)'),
+              const SizedBox(height: 4),
+              TextField(
+                controller: _stemLengthController,
+                keyboardType: TextInputType.number,
+                decoration: _fieldDecoration().copyWith(
+                  hintText: 'Enter stem length in cm',
+                ),
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Root Length (cm)'),
+              const SizedBox(height: 4),
+              TextField(
+                controller: _rootLengthController,
+                keyboardType: TextInputType.number,
+                decoration: _fieldDecoration().copyWith(
+                  hintText: 'Enter root length in cm',
+                ),
+              ),
+              const SizedBox(height: 20),
+              // ===== LEAVES =====
+              _fieldLabel('Leaves'),
+              const SizedBox(height: 8),
+              _fieldLabel('Number of Leaves'),
+              const SizedBox(height: 4),
+              TextField(
+                controller: _numberOfLeavesController,
+                keyboardType: TextInputType.number,
+                decoration: _fieldDecoration().copyWith(
+                  hintText: 'Enter number of leaves',
+                ),
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Leaf Shape'),
+              const SizedBox(height: 4),
+              _dropdownField(
+                hint: 'Select leaf shape',
+                value: _selectedLeafShape,
+                options: _leafShapeOptions,
+                onChanged: (String? value) {
+                  setState(() {
+                    _selectedLeafShape = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Leaf Length (cm)'),
+              const SizedBox(height: 4),
+              TextField(
+                controller: _leafLengthController,
+                keyboardType: TextInputType.number,
+                decoration: _fieldDecoration().copyWith(
+                  hintText: 'Enter leaf length in cm',
+                ),
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Leaf Width (cm)'),
+              const SizedBox(height: 4),
+              TextField(
+                controller: _leafWidthController,
+                keyboardType: TextInputType.number,
+                decoration: _fieldDecoration().copyWith(
+                  hintText: 'Enter leaf width in cm',
+                ),
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Leaf Texture (select multiple)'),
+              const SizedBox(height: 8),
+              ..._leafTextureOptions.map(
+                (String option) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: CheckboxListTile(
+                    title: Text(option),
+                    value: _selectedLeafTexture.contains(option),
+                    onChanged: (bool? value) {
+                      setState(() {
+                        if (value == true) {
+                          _selectedLeafTexture.add(option);
+                        } else {
+                          _selectedLeafTexture.remove(option);
+                        }
+                      });
+                    },
+                    contentPadding: EdgeInsets.zero,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Leaf Arrangement'),
+              const SizedBox(height: 4),
+              _dropdownField(
+                hint: 'Select leaf arrangement',
+                value: _selectedLeafArrangement,
+                options: _leafArrangementOptions,
+                onChanged: (String? value) {
+                  setState(() {
+                    _selectedLeafArrangement = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 20),
+              // ===== FLOWERS =====
+              _fieldLabel('Flowers'),
+              const SizedBox(height: 8),
               _fieldLabel('Flower Color'),
               const SizedBox(height: 4),
               _dropdownField(
-                hint: 'Select one flower color',
+                hint: 'Select flower color',
                 value: _selectedFlowerColor,
                 options: _flowerColorOptions,
                 onChanged: (String? value) {
                   setState(() {
                     _selectedFlowerColor = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Number of Flowers'),
+              const SizedBox(height: 4),
+              TextField(
+                controller: _numberOfFlowersController,
+                keyboardType: TextInputType.number,
+                decoration: _fieldDecoration().copyWith(
+                  hintText: 'Enter number of flowers',
+                ),
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Flower Diameter (cm)'),
+              const SizedBox(height: 4),
+              TextField(
+                controller: _flowerDiameterController,
+                keyboardType: TextInputType.number,
+                decoration: _fieldDecoration().copyWith(
+                  hintText: 'Enter flower diameter in cm',
+                ),
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Inflorescence Type'),
+              const SizedBox(height: 4),
+              _dropdownField(
+                hint: 'Select inflorescence type',
+                value: _selectedInflorescenceType,
+                options: _inflorescenceTypeOptions,
+                onChanged: (String? value) {
+                  setState(() {
+                    _selectedInflorescenceType = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Petal Characteristics'),
+              const SizedBox(height: 4),
+              _dropdownField(
+                hint: 'Select petal characteristics',
+                value: _selectedPetalCharacteristics,
+                options: _petalCharacteristicsOptions,
+                onChanged: (String? value) {
+                  setState(() {
+                    _selectedPetalCharacteristics = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Sepal Characteristics'),
+              const SizedBox(height: 4),
+              TextField(
+                controller: _sepalCharacteristicsController,
+                decoration: _fieldDecoration().copyWith(
+                  hintText: 'Describe sepal characteristics',
+                ),
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Labellum / Lip Description'),
+              const SizedBox(height: 4),
+              _dropdownField(
+                hint: 'Select labellum type',
+                value: _selectedLabellumDescription,
+                options: _labellumOptions,
+                onChanged: (String? value) {
+                  setState(() {
+                    _selectedLabellumDescription = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Fragrance'),
+              const SizedBox(height: 4),
+              _dropdownField(
+                hint: 'Select fragrance level',
+                value: _selectedFragrance,
+                options: _fragranceOptions,
+                onChanged: (String? value) {
+                  setState(() {
+                    _selectedFragrance = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Blooming Stage'),
+              const SizedBox(height: 4),
+              _dropdownField(
+                hint: 'Select blooming stage',
+                value: _selectedBloomingStage,
+                options: _bloomingStageOptions,
+                onChanged: (String? value) {
+                  setState(() {
+                    _selectedBloomingStage = value;
                   });
                 },
               ),
@@ -7891,6 +8400,48 @@ class _UploadSpeciesMorphologyScreenState
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(height: 20),
+              // ===== FRUITS/SEEDS =====
+              _fieldLabel('Fruits / Seeds'),
+              const SizedBox(height: 8),
+              _fieldLabel('Fruit Present'),
+              const SizedBox(height: 4),
+              _dropdownField(
+                hint: 'Select yes or no',
+                value: _selectedFruitPresent,
+                options: _pseudobulbOptions,
+                onChanged: (String? value) {
+                  setState(() {
+                    _selectedFruitPresent = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Fruit Type'),
+              const SizedBox(height: 4),
+              _dropdownField(
+                hint: 'Select fruit type',
+                value: _selectedFruitType,
+                options: _fruitTypeOptions,
+                onChanged: (String? value) {
+                  setState(() {
+                    _selectedFruitType = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 10),
+              _fieldLabel('Seed Capsule Condition'),
+              const SizedBox(height: 4),
+              _dropdownField(
+                hint: 'Select seed capsule condition',
+                value: _selectedSeedCapsuleCondition,
+                options: _seedCapsuleConditionOptions,
+                onChanged: (String? value) {
+                  setState(() {
+                    _selectedSeedCapsuleCondition = value;
+                  });
+                },
               ),
               const SizedBox(height: 20),
               Center(
