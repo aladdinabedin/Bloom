@@ -7,7 +7,7 @@
 .atom/
 .build/
 .buildlog/
-.history
+.history/
 .svn/
 .swiftpm/
 migrate_working_dir/
@@ -32,6 +32,9 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+
+# Backend dependencies
+/backend/node_modules/
 
 # Symbolication related
 app.*.symbols
